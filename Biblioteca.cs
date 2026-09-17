@@ -12,24 +12,18 @@ public class Biblioteca
         lectores = new List<Lector>();
     }
 
-    public void AgregarLibro(Libro libro)
-    {
-        libros.Add(libro);
-    }
-
-    public void AgregarLector(Lector lector)
-    {
-        lectores.Add(lector);
-    }
-
     public Libro BuscarLibro(string titulo)
     {
-        foreach (Libro libro in libros)
+        int i = 0;
+
+        while (i < libros.Count)
         {
-            if (libro.GetTitulo() == titulo)
+            if (libros[i].Titulo == titulo)
             {
-                return libro;
+                return libros[i];
             }
+
+            i++;
         }
 
         return null;
@@ -37,34 +31,33 @@ public class Biblioteca
 
     public Lector BuscarLector(string dni)
     {
-        foreach (Lector lector in lectores)
+        int i = 0;
+
+        while (i < lectores.Count)
         {
-            if (lector.GetDni() == dni)
+            if (lectores[i].Dni == dni)
             {
-                return lector;
+                return lectores[i];
             }
+
+            i++;
         }
 
         return null;
     }
 
-    public bool PrestarLibro(string titulo, string dni)
+    public bool AgregarLibro(string titulo, string autor, string editorial)
     {
         Libro libro = BuscarLibro(titulo);
-        Lector lector = BuscarLector(dni);
 
-        if (libro == null || lector == null)
+        if (libro == null)
         {
-            return false;
+            libro = new Libro(titulo, autor, editorial);
+            libros.Add(libro);
+            return true;
         }
 
-        if (lector.CantidadPrestamos() >= 3)
-        {
-            return false;
-        }
-
-        lector.AgregarPrestamo(libro);
-        return true;
+        return false;
     }
 
     public void ListarLibros()
@@ -75,11 +68,54 @@ public class Biblioteca
         }
     }
 
-    public void ListarLectores()
+    public bool EliminarLibro(string titulo)
     {
-        foreach (Lector lector in lectores)
+        Libro libro = BuscarLibro(titulo);
+
+        if (libro != null)
         {
-            Console.WriteLine(lector);
+            libros.Remove(libro);
+            return true;
         }
+
+        return false;
+    }
+
+    public void AltaLector(string nombre, string dni)
+    {
+        Lector lector = BuscarLector(dni);
+
+        if (lector == null)
+        {
+            lector = new Lector(nombre, dni);
+            lectores.Add(lector);
+        }
+    }
+
+    public string PrestarLibro(string titulo, string dni)
+    {
+        Lector lector = BuscarLector(dni);
+
+        if (lector == null)
+        {
+            return "LECTOR INEXISTENTE";
+        }
+
+        Libro libro = BuscarLibro(titulo);
+
+        if (libro == null)
+        {
+            return "LIBRO INEXISTENTE";
+        }
+
+        if (lector.LibrosPrestados.Count >= 3)
+        {
+            return "TOPE DE PRESTAMO ALCANZADO";
+        }
+
+        libros.Remove(libro);
+        lector.LibrosPrestados.Add(libro);
+
+        return "PRESTAMO EXITOSO";
     }
 }
