@@ -13,13 +13,13 @@ public class Libro
         this.editorial = editorial;
     }
 
-    public string GetTitulo()
+    public string Titulo
     {
-        return titulo;
+        get { return titulo; }
     }
 
     public override string ToString()
     {
-        return $"{titulo} - {autor} - {editorial}";
+        return titulo + " - " + autor + " - " + editorial;
     }
 }
