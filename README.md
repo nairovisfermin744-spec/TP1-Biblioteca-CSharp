@@ -1,86 +1,124 @@
-# Trabajo Práctico Biblioteca - C#
+Trabajo Práctico 1 - La Biblioteca
 
-## Descripción
+Descripción
 
-Este proyecto implementa un sistema básico de gestión de una biblioteca utilizando **C#** y **Programación Orientada a Objetos (POO)**.
+Este proyecto implementa el sistema de biblioteca solicitado en el TP1 La Biblioteca, utilizando C# y Programación Orientada a Objetos (POO).
 
-El sistema permite administrar libros y lectores, realizar préstamos y controlar el límite de préstamos por lector.
+La biblioteca administra una colección de libros y una colección de lectores registrados. Cada lector puede tener como máximo 3 préstamos vigentes.
 
-## Clases principales
+Cuando se realiza un préstamo correctamente, el libro se elimina de la lista de libros disponibles de la biblioteca y se agrega a los préstamos del lector.
 
-### Libro
+Clases principales
+
+Libro
 
 Representa un libro de la biblioteca.
 
-**Atributos:**
-- Título
-- Autor
-- Editorial
+Atributos:
 
-### Lector
+- "titulo : string"
+- "autor : string"
+- "editorial : string"
 
-Representa a una persona que puede solicitar libros en préstamo.
+Métodos principales:
 
-**Atributos:**
-- Nombre
-- DNI
-- Lista de libros prestados
+- "Libro(string titulo, string autor, string editorial)"
+- "getTitulo() : string"
+- "ToString() : string"
 
-### Biblioteca
+Lector
+
+Representa a un lector registrado en la biblioteca.
+
+Atributos:
+
+- "nombre : string"
+- "dni : int"
+- "prestamos : List<Libro>"
+
+Métodos principales:
+
+- "Lector(string nombre, int dni)"
+- "getDni() : int"
+- "agregarPrestamo(Libro libro) : void"
+- "cantidadPrestamos() : int"
+- "ToString() : string"
+
+Biblioteca
 
 Administra los libros disponibles y los lectores registrados.
 
-**Funciones principales:**
-- `AgregarLibro()`
-- `BuscarLibro()`
-- `EliminarLibro()`
-- `AltaLector()`
-- `BuscarLector()`
-- `PrestarLibro()`
-- `ListarLibros()`
+Atributos:
 
-## Regla de préstamos
+- "libros : List<Libro>"
+- "lectores : List<Lector>"
 
-Cada lector puede tener como máximo **3 libros en préstamo**.
+Métodos principales:
 
-Para realizar un préstamo deben existir tanto el lector como el libro.
+- "agregarLibro(string titulo, string autor, string editorial) : bool"
+- "buscarLibro(string titulo) : Libro"
+- "eliminarLibro(string titulo) : bool"
+- "listarLibros() : void"
+- "altaLector(string nombre, int dni) : bool"
+- "buscarLector(int dni) : Lector"
+- "prestarLibro(string titulo, int dni) : string"
 
-Cuando el préstamo se realiza correctamente, el libro se elimina de la lista de libros disponibles y se agrega a la lista de libros prestados del lector.
+Regla de préstamos
 
-## Mensajes del sistema
+Cada lector puede tener como máximo 3 libros prestados.
 
-El método `PrestarLibro()` devuelve los siguientes mensajes según el resultado de la operación:
+Para realizar un préstamo:
 
-- `PRESTAMO EXITOSO`
-- `LIBRO INEXISTENTE`
-- `LECTOR INEXISTENTE`
-- `TOPE DE PRESTAMO ALCANZADO`
+1. Debe existir el lector indicado por su DNI.
+2. El lector no debe haber alcanzado el límite de 3 préstamos.
+3. Debe existir el libro solicitado.
+4. El libro se elimina de los libros disponibles.
+5. El libro se agrega a la lista de préstamos del lector.
 
-## Programa principal
+Mensajes de "prestarLibro"
 
-El archivo `Program.cs` contiene las pruebas de funcionamiento del sistema.
+El método "prestarLibro()" devuelve uno de los siguientes mensajes:
 
-Se realizan seis pruebas:
+- "PRESTAMO EXITOSO"
+- "LIBRO INEXISTENTE"
+- "TOPE DE PRESTAMO ALCANZADO"
+- "LECTOR INEXISTENTE"
 
-1. Préstamo exitoso de un libro.
+Alta de lectores
+
+El método "altaLector()" recibe el nombre y el DNI del lector.
+
+- Devuelve "true" cuando el lector se registra correctamente.
+- Devuelve "false" si ya existe un lector con ese DNI.
+
+Pruebas realizadas
+
+El archivo "Program.cs" contiene pruebas para verificar el funcionamiento del sistema:
+
+1. Primer préstamo exitoso.
 2. Segundo préstamo exitoso.
 3. Tercer préstamo exitoso.
 4. Intento de préstamo de un libro inexistente.
 5. Intento de préstamo con un lector inexistente.
 6. Intento de realizar un cuarto préstamo, verificando el límite máximo de 3 libros.
+7. Intento de registrar nuevamente un lector con el mismo DNI.
 
-## Archivos del proyecto
+Archivos del proyecto
 
-- `Libro.cs` — clase que representa los libros.
-- `Lector.cs` — clase que representa a los lectores y sus préstamos.
-- `Biblioteca.cs` — clase que administra libros, lectores y préstamos.
-- `Program.cs` — programa principal y pruebas.
-- `README.md` — documentación del proyecto.
+- "Libro.cs" — clase que representa los libros.
+- "Lector.cs" — clase que representa a los lectores y sus préstamos.
+- "Biblioteca.cs" — clase que administra libros, lectores y préstamos.
+- "Program.cs" — programa principal y pruebas.
+- "TP1-Biblioteca-CSharp.csproj" — archivo de configuración del proyecto C#.
+- "README.md" — documentación del proyecto.
 
-## Lenguaje
+Tecnología
 
-**C#**
+- Lenguaje: C#
+- Framework: .NET 8
+- Paradigma: Programación Orientada a Objetos (POO)
+- Modelado: UML
 
-## Tema
+Estado del proyecto
 
-**Programación Orientada a Objetos - UML y desarrollo en C#**
+El código se encuentra organizado según la estructura del TP1 La Biblioteca y preparado para ser probado en Visual Studio o en otro entorno compatible con .NET 8.
