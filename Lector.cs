@@ -4,33 +4,33 @@ using System.Collections.Generic;
 public class Lector
 {
     private string nombre;
-    private string dni;
-    private List<Libro> librosPrestados;
+    private int dni;
+    private List<Libro> prestamos;
 
-    public Lector(string nombre, string dni)
+    public Lector(string nombre, int dni)
     {
         this.nombre = nombre;
         this.dni = dni;
-        librosPrestados = new List<Libro>();
+        this.prestamos = new List<Libro>();
     }
 
-    public string Dni
+    public int getDni()
     {
-        get { return dni; }
+        return dni;
     }
 
-    public string Nombre
+    public void agregarPrestamo(Libro libro)
     {
-        get { return nombre; }
+        prestamos.Add(libro);
     }
 
-    public List<Libro> LibrosPrestados
+    public int cantidadPrestamos()
     {
-        get { return librosPrestados; }
+        return prestamos.Count;
     }
 
     public override string ToString()
     {
-        return nombre + " - " + dni;
+        return "Nombre: " + nombre + " DNI: " + dni;
     }
 }
