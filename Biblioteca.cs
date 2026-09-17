@@ -8,47 +8,49 @@ public class Biblioteca
 
     public Biblioteca()
     {
-        libros = new List<Libro>();
-        lectores = new List<Lector>();
+        this.libros = new List<Libro>();
+        this.lectores = new List<Lector>();
     }
 
-    public Libro BuscarLibro(string titulo)
+    private Libro buscarLibro(string titulo)
     {
+        Libro libroBuscado = null;
         int i = 0;
 
-        while (i < libros.Count)
+        while (i < libros.Count && !libros[i].getTitulo().Equals(titulo))
         {
-            if (libros[i].Titulo == titulo)
-            {
-                return libros[i];
-            }
-
             i++;
         }
 
-        return null;
+        if (i != libros.Count)
+        {
+            libroBuscado = libros[i];
+        }
+
+        return libroBuscado;
     }
 
-    public Lector BuscarLector(string dni)
+    private Lector buscarLector(int dni)
     {
+        Lector lectorBuscado = null;
         int i = 0;
 
-        while (i < lectores.Count)
+        while (i < lectores.Count && lectores[i].getDni() != dni)
         {
-            if (lectores[i].Dni == dni)
-            {
-                return lectores[i];
-            }
-
             i++;
         }
 
-        return null;
+        if (i != lectores.Count)
+        {
+            lectorBuscado = lectores[i];
+        }
+
+        return lectorBuscado;
     }
 
-    public bool AgregarLibro(string titulo, string autor, string editorial)
+    public bool agregarLibro(string titulo, string autor, string editorial)
     {
-        Libro libro = BuscarLibro(titulo);
+        Libro libro = buscarLibro(titulo);
 
         if (libro == null)
         {
@@ -60,7 +62,7 @@ public class Biblioteca
         return false;
     }
 
-    public void ListarLibros()
+    public void listarLibros()
     {
         foreach (Libro libro in libros)
         {
@@ -68,9 +70,9 @@ public class Biblioteca
         }
     }
 
-    public bool EliminarLibro(string titulo)
+    public bool eliminarLibro(string titulo)
     {
-        Libro libro = BuscarLibro(titulo);
+        Libro libro = buscarLibro(titulo);
 
         if (libro != null)
         {
@@ -81,40 +83,44 @@ public class Biblioteca
         return false;
     }
 
-    public void AltaLector(string nombre, string dni)
+    public bool altaLector(string nombre, int dni)
     {
-        Lector lector = BuscarLector(dni);
+        bool resultado = false;
+        Lector lector = buscarLector(dni);
 
         if (lector == null)
         {
             lector = new Lector(nombre, dni);
             lectores.Add(lector);
+            resultado = true;
         }
+
+        return resultado;
     }
 
-    public string PrestarLibro(string titulo, string dni)
+    public string prestarLibro(string titulo, int dni)
     {
-        Lector lector = BuscarLector(dni);
+        Lector lector = buscarLector(dni);
 
         if (lector == null)
         {
             return "LECTOR INEXISTENTE";
         }
 
-        Libro libro = BuscarLibro(titulo);
+        if (lector.cantidadPrestamos() >= 3)
+        {
+            return "TOPE DE PRESTAMO ALCANZADO";
+        }
+
+        Libro libro = buscarLibro(titulo);
 
         if (libro == null)
         {
             return "LIBRO INEXISTENTE";
         }
 
-        if (lector.LibrosPrestados.Count >= 3)
-        {
-            return "TOPE DE PRESTAMO ALCANZADO";
-        }
-
         libros.Remove(libro);
-        lector.LibrosPrestados.Add(libro);
+        lector.agregarPrestamo(libro);
 
         return "PRESTAMO EXITOSO";
     }
