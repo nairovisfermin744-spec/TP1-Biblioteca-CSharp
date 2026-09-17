@@ -13,9 +13,9 @@ public class Libro
         this.editorial = editorial;
     }
 
-    public string Titulo
+    public string getTitulo()
     {
-        get { return titulo; }
+        return titulo;
     }
 
     public override string ToString()
