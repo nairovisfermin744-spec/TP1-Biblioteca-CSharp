@@ -5,32 +5,32 @@ public class Lector
 {
     private string nombre;
     private string dni;
-    private List<Libro> prestamos;
+    private List<Libro> librosPrestados;
 
     public Lector(string nombre, string dni)
     {
         this.nombre = nombre;
         this.dni = dni;
-        this.prestamos = new List<Libro>();
+        librosPrestados = new List<Libro>();
     }
 
-    public string GetDni()
+    public string Dni
     {
-        return dni;
+        get { return dni; }
     }
 
-    public void AgregarPrestamo(Libro libro)
+    public string Nombre
     {
-        prestamos.Add(libro);
+        get { return nombre; }
     }
 
-    public int CantidadPrestamos()
+    public List<Libro> LibrosPrestados
     {
-        return prestamos.Count;
+        get { return librosPrestados; }
     }
 
     public override string ToString()
     {
-        return $"{nombre} - DNI: {dni} - Préstamos: {prestamos.Count}";
+        return nombre + " - " + dni;
     }
 }
