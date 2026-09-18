@@ -3,18 +3,20 @@ using System.Collections.Generic;
 
 public class Lector
 {
+    //intervengo aca, en el UML DNI se define como cadena
+    //y aca se lo declara como int, lo cambio a string
     private string nombre;
-    private int dni;
+    private string dni;
     private List<Libro> prestamos;
 
-    public Lector(string nombre, int dni)
+    public Lector(string nombre, string dni)
     {
         this.nombre = nombre;
         this.dni = dni;
         this.prestamos = new List<Libro>();
     }
 
-    public int getDni()
+    public string getDni()
     {
         return dni;
     }

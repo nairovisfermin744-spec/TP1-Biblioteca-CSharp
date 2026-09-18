@@ -1,0 +1,10 @@
+# Visual Studio
+.vs/
+
+# Compilación de .NET
+bin/
+obj/
+
+# Archivos temporales de usuario
+*.user
+*.suo

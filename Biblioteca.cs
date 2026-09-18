@@ -30,7 +30,7 @@ public class Biblioteca
         return libroBuscado;
     }
 
-    private Lector buscarLector(int dni)
+    private Lector buscarLector(string dni)
     {
         Lector lectorBuscado = null;
         int i = 0;
@@ -83,7 +83,7 @@ public class Biblioteca
         return false;
     }
 
-    public bool altaLector(string nombre, int dni)
+    public bool altaLector(string nombre, string dni)
     {
         bool resultado = false;
         Lector lector = buscarLector(dni);
@@ -98,30 +98,24 @@ public class Biblioteca
         return resultado;
     }
 
-    public string prestarLibro(string titulo, int dni)
+    //prestar libro no seguia la progresion de la consigna en las validaciones
+    //por ejemplo, si el lector existe, y tiene 3 prestamos,
+    //aunque el libro no exista, va a devolver TOPE DE PRESTAMO ALCANZADO,
+    //cuando deberia devolver LIBRO INEXISTENTE.
+    //Lo acomodo
+
+    public string prestarLibro(string titulo, string dni)
     {
         Lector lector = buscarLector(dni);
-
-        if (lector == null)
-        {
-            return "LECTOR INEXISTENTE";
-        }
-
-        if (lector.cantidadPrestamos() >= 3)
-        {
-            return "TOPE DE PRESTAMO ALCANZADO";
-        }
+        if (lector == null) return "LECTOR INEXISTENTE";
 
         Libro libro = buscarLibro(titulo);
+        if (libro == null) return "LIBRO INEXISTENTE";
 
-        if (libro == null)
-        {
-            return "LIBRO INEXISTENTE";
-        }
+        if (lector.cantidadPrestamos() >= 3) return "TOPE DE PRESTAMO ALCANZADO";
 
         libros.Remove(libro);
         lector.agregarPrestamo(libro);
-
         return "PRESTAMO EXITOSO";
     }
 }
