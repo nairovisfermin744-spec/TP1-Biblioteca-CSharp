@@ -54,5 +54,18 @@ public class Program
         Console.WriteLine("PRUEBA 6:");
         Console.WriteLine(
             biblioteca.prestarLibro("Rayuela", "11111111"));
+
+        // PRUEBA 7: libro duplicado
+        Console.WriteLine("PRUEBA 7:");
+        Console.WriteLine(
+            biblioteca.agregarLibro(
+                "El Principito",
+                "Antoine de Saint-Exupéry",
+                "Salamandra"));
+
+        // PRUEBA 8: eliminar libro
+        Console.WriteLine("PRUEBA 8:");
+        Console.WriteLine(
+            biblioteca.eliminarLibro("Rayuela"));
     }
 }
