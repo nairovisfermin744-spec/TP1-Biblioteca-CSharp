@@ -115,7 +115,7 @@ Archivos del proyecto
 Tecnología
 
 - Lenguaje: C#
-- Framework: .NET 8
+- Framework: .NET 10
 - Paradigma: Programación Orientada a Objetos (POO)
 - Modelado: UML
 
