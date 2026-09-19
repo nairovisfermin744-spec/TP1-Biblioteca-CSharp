@@ -4,7 +4,7 @@ Descripción
 
 Este proyecto implementa el sistema de biblioteca solicitado en el TP1 La Biblioteca, utilizando C# y Programación Orientada a Objetos (POO).
 
-La biblioteca administra una colección de libros y una colección de lectores registrados. Cada lector puede tener como máximo 3 préstamos vigentes.
+La biblioteca administra una colección de libros disponibles y una colección de lectores registrados. Cada lector puede tener como máximo 3 préstamos vigentes.
 
 Cuando se realiza un préstamo correctamente, el libro se elimina de la lista de libros disponibles de la biblioteca y se agrega a los préstamos del lector.
 
@@ -33,13 +33,13 @@ Representa a un lector registrado en la biblioteca.
 Atributos:
 
 - "nombre : string"
-- "dni : int"
+- "dni : string"
 - "prestamos : List<Libro>"
 
 Métodos principales:
 
-- "Lector(string nombre, int dni)"
-- "getDni() : int"
+- "Lector(string nombre, string dni)"
+- "getDni() : string"
 - "agregarPrestamo(Libro libro) : void"
 - "cantidadPrestamos() : int"
 - "ToString() : string"
@@ -59,19 +59,19 @@ Métodos principales:
 - "buscarLibro(string titulo) : Libro"
 - "eliminarLibro(string titulo) : bool"
 - "listarLibros() : void"
-- "altaLector(string nombre, int dni) : bool"
-- "buscarLector(int dni) : Lector"
-- "prestarLibro(string titulo, int dni) : string"
+- "altaLector(string nombre, string dni) : bool"
+- "buscarLector(string dni) : Lector"
+- "prestarLibro(string titulo, string dni) : string"
 
 Regla de préstamos
 
 Cada lector puede tener como máximo 3 libros prestados.
 
-Para realizar un préstamo:
+Para realizar un préstamo, el sistema valida en este orden:
 
 1. Debe existir el lector indicado por su DNI.
-2. El lector no debe haber alcanzado el límite de 3 préstamos.
-3. Debe existir el libro solicitado.
+2. Debe existir el libro solicitado.
+3. El lector no debe haber alcanzado el límite de 3 préstamos.
 4. El libro se elimina de los libros disponibles.
 5. El libro se agrega a la lista de préstamos del lector.
 
@@ -95,13 +95,17 @@ Pruebas realizadas
 
 El archivo "Program.cs" contiene pruebas para verificar el funcionamiento del sistema:
 
-1. Primer préstamo exitoso.
-2. Segundo préstamo exitoso.
-3. Tercer préstamo exitoso.
-4. Intento de préstamo de un libro inexistente.
-5. Intento de préstamo con un lector inexistente.
-6. Intento de realizar un cuarto préstamo, verificando el límite máximo de 3 libros.
-7. Intento de registrar nuevamente un lector con el mismo DNI.
+1. Alta de un lector.
+2. Alta de un segundo lector.
+3. Intento de registrar nuevamente un lector con el mismo DNI.
+4. Primer préstamo exitoso.
+5. Segundo préstamo exitoso.
+6. Tercer préstamo exitoso.
+7. Intento de préstamo de un libro inexistente.
+8. Intento de préstamo con un lector inexistente.
+9. Intento de realizar un cuarto préstamo, verificando el límite máximo de 3 libros.
+10. Intento de agregar un libro que ya existe.
+11. Eliminación de un libro.
 
 Archivos del proyecto
 
