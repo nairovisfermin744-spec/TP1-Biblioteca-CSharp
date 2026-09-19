@@ -121,4 +121,13 @@ Tecnología
 
 Estado del proyecto
 
-El código se encuentra organizado según la estructura del TP1 La Biblioteca y preparado para ser probado en Visual Studio o en otro entorno compatible con .NET 8.
+El código se encuentra organizado según la estructura del TP1 La Biblioteca y preparado para ser probado en Visual Studio o en otro entorno compatible con .NET 10.
+
+## Diagramas
+
+Los diagramas del trabajo fueron realizados en draw.io y se encuentran organizados en dos páginas dentro del mismo archivo:
+
+- **Página 1:** Diagrama UML
+- **Página 2:** Diagrama de Casos de Uso
+
+[Ver y editar los diagramas en draw.io](https://app.diagrams.net/?title=Diagrama%20tp1%20%2FPoo&dark=auto#Uhttps%3A%2F%2Fdrive.google.com%2Fuc%3Fid%3D1UtfMjyRTf_2f3UAPDQn6JM4G7drWIXne%26export%3Ddownload)
