@@ -1,137 +1,127 @@
-Trabajo Práctico 1 - La Biblioteca
+# TP1 - La Biblioteca
 
-Descripción
+## Descripción
 
-Este proyecto implementa el sistema de biblioteca solicitado en el TP1 La Biblioteca, utilizando C# y Programación Orientada a Objetos (POO).
+Este proyecto implementa el TP1 La Biblioteca, utilizando C# y Programación Orientada a Objetos (POO), siguiendo los requerimientos de la consigna.
 
-La biblioteca administra una colección de libros disponibles y una colección de lectores registrados. Cada lector puede tener como máximo 3 préstamos vigentes.
+La Biblioteca administra una colección de libros y una colección de lectores registrados. Cada lector puede tener como máximo 3 préstamos vigentes.
 
-Cuando se realiza un préstamo correctamente, el libro se elimina de la lista de libros disponibles de la biblioteca y se agrega a los préstamos del lector.
+Cuando un préstamo es exitoso, el libro se retira de la colección disponible de la Biblioteca y se agrega a la colección de préstamos del lector.
 
-Clases principales
+## Requerimientos implementados
 
-Libro
+- Colección de lectores registrados.
+- Datos del lector: nombre y DNI.
+- Máximo de 3 préstamos vigentes por lector.
+- altaLector(nombre, dni) para registrar lectores sin duplicar el DNI.
+- prestarLibro(titulo, dni) con los cuatro resultados indicados por la consigna:
+  - PRESTAMO EXITOSO
+  - LIBRO INEXISTENTE
+  - TOPE DE PRESTAMO ALCANZADO
+  - LECTOR INEXISTENTE
+- Al prestar correctamente, el libro pasa de la lista de la Biblioteca a los préstamos del lector.
 
-Representa un libro de la biblioteca.
+## Clases
 
-Atributos:
+### Libro
 
-- "titulo : string"
-- "autor : string"
-- "editorial : string"
+Atributos privados:
+- titulo : string
+- autor : string
+- editorial : string
 
-Métodos principales:
+Métodos:
+- Libro(string titulo, string autor, string editorial)
+- getTitulo() : string
+- ToString() : string
 
-- "Libro(string titulo, string autor, string editorial)"
-- "getTitulo() : string"
-- "ToString() : string"
+### Lector
 
-Lector
+Atributos privados:
+- nombre : string
+- dni : string
+- prestamos : List<Libro>
 
-Representa a un lector registrado en la biblioteca.
+Métodos:
+- Lector(string nombre, string dni)
+- getDni() : string
+- agregarPrestamo(Libro libro) : void
+- cantidadPrestamos() : int
+- ToString() : string
 
-Atributos:
+### Biblioteca
 
-- "nombre : string"
-- "dni : string"
-- "prestamos : List<Libro>"
+Atributos privados:
+- libros : List<Libro>
+- lectores : List<Lector>
 
-Métodos principales:
+Métodos públicos:
+- Biblioteca()
+- agregarLibro(string titulo, string autor, string editorial) : bool
+- listarLibros() : void
+- eliminarLibro(string titulo) : bool
+- altaLector(string nombre, string dni) : bool
+- prestarLibro(string titulo, string dni) : string
 
-- "Lector(string nombre, string dni)"
-- "getDni() : string"
-- "agregarPrestamo(Libro libro) : void"
-- "cantidadPrestamos() : int"
-- "ToString() : string"
+Métodos privados de apoyo:
+- buscarLibro(string titulo) : Libro
+- buscarLector(string dni) : Lector
 
-Biblioteca
+## Regla de préstamos
 
-Administra los libros disponibles y los lectores registrados.
+El método prestarLibro() valida:
 
-Atributos:
+1. Que el lector esté registrado.
+2. Que el libro exista en la Biblioteca.
+3. Que el lector tenga menos de 3 préstamos.
+4. Retira el libro de la colección de la Biblioteca.
+5. Agrega el libro a los préstamos del lector.
 
-- "libros : List<Libro>"
-- "lectores : List<Lector>"
+## Pruebas en Program.cs
 
-Métodos principales:
+El programa prueba:
 
-- "agregarLibro(string titulo, string autor, string editorial) : bool"
-- "buscarLibro(string titulo) : Libro"
-- "eliminarLibro(string titulo) : bool"
-- "listarLibros() : void"
-- "altaLector(string nombre, string dni) : bool"
-- "buscarLector(string dni) : Lector"
-- "prestarLibro(string titulo, string dni) : string"
-
-Regla de préstamos
-
-Cada lector puede tener como máximo 3 libros prestados.
-
-Para realizar un préstamo, el sistema valida en este orden:
-
-1. Debe existir el lector indicado por su DNI.
-2. Debe existir el libro solicitado.
-3. El lector no debe haber alcanzado el límite de 3 préstamos.
-4. El libro se elimina de los libros disponibles.
-5. El libro se agrega a la lista de préstamos del lector.
-
-Mensajes de "prestarLibro"
-
-El método "prestarLibro()" devuelve uno de los siguientes mensajes:
-
-- "PRESTAMO EXITOSO"
-- "LIBRO INEXISTENTE"
-- "TOPE DE PRESTAMO ALCANZADO"
-- "LECTOR INEXISTENTE"
-
-Alta de lectores
-
-El método "altaLector()" recibe el nombre y el DNI del lector.
-
-- Devuelve "true" cuando el lector se registra correctamente.
-- Devuelve "false" si ya existe un lector con ese DNI.
-
-Pruebas realizadas
-
-El archivo "Program.cs" contiene pruebas para verificar el funcionamiento del sistema:
-
-1. Alta de un lector.
-2. Alta de un segundo lector.
-3. Intento de registrar nuevamente un lector con el mismo DNI.
-4. Primer préstamo exitoso.
-5. Segundo préstamo exitoso.
-6. Tercer préstamo exitoso.
-7. Intento de préstamo de un libro inexistente.
-8. Intento de préstamo con un lector inexistente.
-9. Intento de realizar un cuarto préstamo, verificando el límite máximo de 3 libros.
-10. Intento de agregar un libro que ya existe.
-11. Eliminación de un libro.
-
-Archivos del proyecto
-
-- "Libro.cs" — clase que representa los libros.
-- "Lector.cs" — clase que representa a los lectores y sus préstamos.
-- "Biblioteca.cs" — clase que administra libros, lectores y préstamos.
-- "Program.cs" — programa principal y pruebas.
-- "TP1-Biblioteca-CSharp.csproj" — archivo de configuración del proyecto C#.
-- "README.md" — documentación del proyecto.
-
-Tecnología
-
-- Lenguaje: C#
-- Framework: .NET 10
-- Paradigma: Programación Orientada a Objetos (POO)
-- Modelado: UML
-
-Estado del proyecto
-
-El código se encuentra organizado según la estructura del TP1 La Biblioteca y preparado para ser probado en Visual Studio o en otro entorno compatible con .NET 10.
+1. Alta de Ana.
+2. Alta de Juan.
+3. Intento de alta duplicada de Ana.
+4. Tres préstamos exitosos.
+5. Libro inexistente.
+6. Lector inexistente.
+7. Intento de cuarto préstamo.
+8. Intento de agregar un libro duplicado.
+9. Eliminación de un libro.
 
 ## Diagramas
 
-Los diagramas del trabajo fueron realizados en draw.io y se encuentran organizados en dos páginas dentro del mismo archivo:
+Los diagramas actualizados incluidos en el repositorio son:
 
-- **Página 1:** Diagrama UML
-- **Página 2:** Diagrama de Casos de Uso
+- [Diagrama UML](Diagrama%20UML.drawio.png)
+- [Diagrama de Casos de Uso](Diagrama%20CASO%20DE%20USO.drawio.png)
 
-[Ver y editar los diagramas en draw.io](https://app.diagrams.net/?title=Diagrama%20tp1%20%2FPoo&dark=auto#Uhttps%3A%2F%2Fdrive.google.com%2Fuc%3Fid%3D1UtfMjyRTf_2f3UAPDQn6JM4G7drWIXne%26export%3Ddownload)
+El UML representa clases, atributos, métodos, relaciones y multiplicidades. Los métodos buscarLibro() y buscarLector() aparecen como privados porque son lógica interna de Biblioteca.
+
+## Narrativa
+
+La explicación paso a paso de altaLector() y prestarLibro() se encuentra en [NARRATIVA.md](NARRATIVA.md).
+
+## Archivos del proyecto
+
+- Libro.cs
+- Lector.cs
+- Biblioteca.cs
+- Program.cs
+- TP1-Biblioteca-CSharp.csproj
+- README.md
+- NARRATIVA.md
+- Diagrama UML.drawio.png
+- Diagrama CASO DE USO.drawio.png
+
+## Tecnología
+
+- Lenguaje: C#
+- Paradigma: Programación Orientada a Objetos (POO)
+- Proyecto: aplicación de consola .NET
+
+## Entrega
+
+La consigna indica entregar todos los archivos correspondientes dentro de un archivo comprimido con el nombre solicitado por la cátedra y presentar un video grupal de máximo 10 minutos, con cámaras activas, explicando el desarrollo y funcionamiento del proyecto. El enlace al video puede ser de YouTube o Drive con permiso de visualización.
