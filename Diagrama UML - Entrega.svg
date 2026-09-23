@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1500" height="650" viewBox="0 0 1500 650">
+<rect width="100%" height="100%" fill="white"/>
+<style>text{font-family:Arial,sans-serif;fill:#222}.title{font-size:28px;font-weight:bold}.head{font-size:22px;font-weight:bold}.body{font-size:18px}.small{font-size:16px}.box{fill:#f4f4f4;stroke:#444;stroke-width:2}.headbg{fill:#d9eaf7}</style>
+<text x="750" y="45" text-anchor="middle" class="title">UML ampliado - TP1 La Biblioteca</text>
+<g transform="translate(40,80)">
+<rect class="box" x="0" y="0" width="470" height="450" rx="4"/><rect class="headbg" x="0" y="0" width="470" height="55"/><text x="235" y="36" text-anchor="middle" class="head">Biblioteca</text>
+<text x="20" y="90" class="body">- libros : List&lt;Libro&gt;</text><text x="20" y="120" class="body">- lectores : List&lt;Lector&gt;</text>
+<line x1="0" y1="145" x2="470" y2="145" stroke="#444"/>
+<text x="20" y="180" class="body">+ Biblioteca()</text><text x="20" y="210" class="body">- buscarLibro(titulo : string) : Libro</text><text x="20" y="240" class="body">- buscarLector(dni : string) : Lector</text><text x="20" y="270" class="body">+ agregarLibro(...) : bool</text><text x="20" y="300" class="body">+ listarLibros() : void</text><text x="20" y="330" class="body">+ eliminarLibro(titulo : string) : bool</text><text x="20" y="360" class="body">+ altaLector(nombre, dni) : bool</text><text x="20" y="390" class="body">+ prestarLibro(titulo, dni) : string</text>
+</g>
+<g transform="translate(560,80)">
+<rect class="box" x="0" y="0" width="400" height="330" rx="4"/><rect class="headbg" x="0" y="0" width="400" height="55"/><text x="200" y="36" text-anchor="middle" class="head">Libro</text>
+<text x="20" y="95" class="body">- titulo : string</text><text x="20" y="125" class="body">- autor : string</text><text x="20" y="155" class="body">- editorial : string</text><line x1="0" y1="180" x2="400" y2="180" stroke="#444"/>
+<text x="20" y="215" class="body">+ Libro(...)</text><text x="20" y="245" class="body">+ getTitulo() : string</text><text x="20" y="275" class="body">+ ToString() : string</text>
+</g>
+<g transform="translate(1020,80)">
+<rect class="box" x="0" y="0" width="430" height="390" rx="4"/><rect class="headbg" x="0" y="0" width="430" height="55"/><text x="215" y="36" text-anchor="middle" class="head">Lector</text>
+<text x="20" y="95" class="body">- nombre : string</text><text x="20" y="125" class="body">- dni : string</text><text x="20" y="155" class="body">- prestamos : List&lt;Libro&gt;</text><line x1="0" y1="180" x2="430" y2="180" stroke="#444"/>
+<text x="20" y="215" class="body">+ Lector(nombre, dni)</text><text x="20" y="245" class="body">+ getDni() : string</text><text x="20" y="275" class="body">+ agregarPrestamo(Libro) : void</text><text x="20" y="305" class="body">+ cantidadPrestamos() : int</text><text x="20" y="335" class="body">+ ToString() : string</text>
+</g>
+<line x1="510" y1="220" x2="560" y2="220" stroke="#444" stroke-width="2"/><text x="535" y="205" text-anchor="middle" class="small">1 — 0..*</text>
+<line x1="960" y1="220" x2="1020" y2="220" stroke="#444" stroke-width="2"/><text x="990" y="205" text-anchor="middle" class="small">1 — 0..*</text>
+<path d="M1220 470 C1220 560, 760 560, 760 410" fill="none" stroke="#444" stroke-width="2"/><text x="990" y="590" text-anchor="middle" class="body">Lector — 0..3 Libro (préstamos vigentes)</text>
+</svg>
