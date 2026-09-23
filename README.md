@@ -91,14 +91,14 @@ El programa prueba:
 8. Intento de agregar un libro duplicado.
 9. Eliminación de un libro.
 
-## Diagramas
+## Diagramas actualizados
 
-Los diagramas actualizados incluidos en el repositorio son:
+- [UML - versión de entrega](Diagrama%20UML%20-%20Entrega.svg)
+- [Casos de Uso - versión de entrega](Diagrama%20CASO%20DE%20USO%20-%20Entrega.svg)
 
-- [Diagrama UML](Diagrama%20UML.drawio.png)
-- [Diagrama de Casos de Uso](Diagrama%20CASO%20DE%20USO.drawio.png)
+También se conservan los dos PNG anteriores del trabajo.
 
-El UML representa clases, atributos, métodos, relaciones y multiplicidades. Los métodos buscarLibro() y buscarLector() aparecen como privados porque son lógica interna de Biblioteca.
+El UML de entrega representa las clases, atributos, métodos, relaciones y multiplicidades. Los métodos buscarLibro() y buscarLector() aparecen como privados porque son lógica interna de Biblioteca.
 
 ## Narrativa
 
@@ -113,6 +113,8 @@ La explicación paso a paso de altaLector() y prestarLibro() se encuentra en [NA
 - TP1-Biblioteca-CSharp.csproj
 - README.md
 - NARRATIVA.md
+- Diagrama UML - Entrega.svg
+- Diagrama CASO DE USO - Entrega.svg
 - Diagrama UML.drawio.png
 - Diagrama CASO DE USO.drawio.png
 
