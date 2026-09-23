@@ -98,24 +98,28 @@ public class Biblioteca
         return resultado;
     }
 
-    //prestar libro no seguia la progresion de la consigna en las validaciones
-    //por ejemplo, si el lector existe, y tiene 3 prestamos,
-    //aunque el libro no exista, va a devolver TOPE DE PRESTAMO ALCANZADO,
-    //cuando deberia devolver LIBRO INEXISTENTE.
-    //Lo acomodo
-
     public string prestarLibro(string titulo, string dni)
     {
         Lector lector = buscarLector(dni);
-        if (lector == null) return "LECTOR INEXISTENTE";
+        if (lector == null)
+        {
+            return "LECTOR INEXISTENTE";
+        }
 
         Libro libro = buscarLibro(titulo);
-        if (libro == null) return "LIBRO INEXISTENTE";
+        if (libro == null)
+        {
+            return "LIBRO INEXISTENTE";
+        }
 
-        if (lector.cantidadPrestamos() >= 3) return "TOPE DE PRESTAMO ALCANZADO";
+        if (lector.cantidadPrestamos() >= 3)
+        {
+            return "TOPE DE PRESTAMO ALCANZADO";
+        }
 
         libros.Remove(libro);
         lector.agregarPrestamo(libro);
+
         return "PRESTAMO EXITOSO";
     }
 }
