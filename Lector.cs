@@ -3,8 +3,6 @@ using System.Collections.Generic;
 
 public class Lector
 {
-    //intervengo aca, en el UML DNI se define como cadena
-    //y aca se lo declara como int, lo cambio a string
     private string nombre;
     private string dni;
     private List<Libro> prestamos;
